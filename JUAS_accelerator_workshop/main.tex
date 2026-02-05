@@ -1,0 +1,90 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\setlength{\parindent}{0pt}
+
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=2.5cm,right=2.5cm,marginparwidth=2.5cm]{geometry}
+\input{Preamble}
+
+\title{JUAS accelerator workshop}
+\author{Johan Holmberg}
+\date{February 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+\textbf{TODO}
+\begin{itemize}
+    \item Make schematic of our setup
+    \begin{itemize}
+        \item Make plot of sawtooth pattern for energy around the ring
+        \item Calculate orbit excursion due to momentum compaction
+    \end{itemize}
+    \item Calculate the length of RF cavities, based on cavity design, frequency etc.
+    \begin{itemize}
+        \item Do this for different cases (5, 20, 30 MV/m)
+    \end{itemize}
+    \item Motivate the choices for our design changes (8 straight sections, $V_rf$ and $\phi_s$ \etc)
+    \item Motivate the choice for leptons, Energy, bending radius
+\end{itemize}
+
+\section{Motivation}
+The cavity length, and thus the distance of the ring which needs to be covered with cryomodules containing RF, can be found by first calculating the cell length of our cavity. We assume a standing wave superconducting cavity design, and thus the length of each cell is 
+\begin{equation}
+    L_{\text{cell}} = \frac{\lambda}{2}.
+\end{equation}
+At an RF frequency of $f=\qty{400}{\MHz}$, we have a wavelength of $\lambda=c/f=\qty{0.75}{\metre}$, giving a cell length of 
+\begin{equation}
+    L_{\text{cell}} = \frac{\qty{75}{\cm}}{2} = \qty{37.5}{\cm}.
+\end{equation}
+We wish to fill a cryomodule which is \qty{7}{\metre} long, meaning our total cavity length must fit in this length, with some room to spare for connections between the cavities. We therefore consider a cavity made of four cells, giving a total length of 
+\begin{equation}
+    L_{\text{cavity}} = 4\times L_{\text{cell}} = \qty{1.5}{\metre}.
+\end{equation}
+This way, we can fit four such cavities in the cryomodule, giving a total length of \qty{6}{\metre} with \qty{1}{\metre} to spare for connections between the cavities. One could optimise this further, \eg by making six cavities with three cells each and a total cavity length of \qty{6.75}{\metre}, but this would leave to little room to spare for other things in the cryomodule. Having four cells per cavity, instead of \eg a single cavity with sixteen cells which would have the same total voltage, is that the power feeding into the RF system is challenging for such a large cavity. The efficiency is also reduced for the final cavities, limiting us to a few cavities, where four is a safe choice which is definitely feasible. \\
+
+The remaining ingredient we need to deliver enough RF power to our beams is the gradient of the field in the RF cavity. This is very different for different cavity types, but for a superconducting standing wave cavity, values up to \qty{30}{\mega \volt \per \meter} are possible. This has however only been done for a single cavity, the TESLA design used in the European XFEL, which operates at a much higher frequency than \qty{400}{\MHz}. Because our frequency (decided by the natural bunch length and energy spread from synchrotron radiation emission) is \qty{400}{\MHz}, we are a bit more cautious with the gradient, believing that \qty{20}{\mega\volt\per\metre} is appropriate. The choice of cavity frequency also changes the size of the cavity, so moving to lower frequencies does not seem feasible, even though it would increase the bucket area and acceptance. We believe the \qty{400}{\MHz} cavities as described here offer a good compromise for all the mentioned aspects, and they are based on existing RF technology (the LHC uses superconducting \qty{400}{\MHz} cavities, although at a low gradient of \qty{5}{\mega\volt\per\metre}). \\
+
+Given these parameters, and the required RF voltage given by the energy loss per turn of the electrons due to synchrotron radiation (and synchronous phase at which we operate the cavities), we can find the length of our machine which must be dedicated to cavities. Each cryomodule now has an effective cavity length of \qty{6}{\metre}, and thus an accelerating field (taking into account transit time factor etc.) of 
+\begin{equation}
+    V_{\text{cryomodule}} = \qty{6}{\metre}\times\qty{20}{\mega\volt\per\metre} = \qty{120}{\mega\volt}.
+\end{equation}
+
+We find the required number of cryomodules given the required total voltage as
+\begin{equation}
+    N_\text{cryomodule} = V_\text{tot}/V_\text{cryomodule}.
+\end{equation}
+
+Dividing this into four straight sections, we find the number of cavities required per straight section. This must be the same for all straight sections, leading to some redundancy compared to if only one straight section was used. We get that the number of cryomodules per straight section is
+\begin{equation}
+    N_\text{cryomodules/section} = \lceil N_\text{cryomodules}/4 \rceil
+\end{equation}
+
+\subsection{Where lies the limitation by the Power losses ?}
+\begin{equation}
+    P_\gamma = \frac{e^2c\beta^4\gamma^4}{6\pi \epsilon_0\rho^2} \quad \propto \frac{\gamma^4}{\rho^2}
+\end{equation}
+
+\begin{equation}
+    P_\gamma =  \qty{6.87}{\GeV}
+\end{equation}
+So basically we want to minimise the total energy and to maximise $\rho$. But the nuclear reaction require at least $171.5$ GeV. Regarding the bending ratio, we can assume that the filling factor can be better than in LHC, because only two interaction points are considered. So, with a maximal circumference of $100 $km and a filling factor of $70\%$ (a bit better than LHC) we get $\rho = 11.14 $ {km}
+
+Thus we define our minimum energy loss per particule for those two parameters
+$\gamma_{171.5GeV} = 335 \;626$
+
+\begin{equation}
+    P_{\gamma, min} = \frac{e^2c\gamma_{171.5GeV}^4}{6\pi \epsilon_0\rho^2} \quad = 4.70 \times10^{-6} \;J/s \quad = 9.79\;GeV/turn
+\end{equation}
+
+That lead to the maximum number of particles per beam (for a 100km circumference), limited to the synchrotron radiation of 
+\begin{equation}
+    N_{part} = \frac{P_{MAX}}{P_\gamma} = 1.063\times10^{13}
+\end{equation}
+
+\subsection{Layout}
+We decided to use a layout with eight straight section, four of which are filled with RF. This is to ensure that the energy of the particles at the interaction points is always the resonant energy for the creation of a t$\bar{t}$ pair. By distributing the acceleration, we also make the orbit excursion due to energy lost to synchrotron radiation smaller. Given the momentum compaction factor, we would otherwise get an orbit excursion of a few mm, which limits the size of our beam pipe. 
+
+\end{document}

@@ -1,0 +1,59 @@
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{placeins}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subfig}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\hypersetup{
+    colorlinks = true,
+    urlcolor = {black},
+    linkcolor = black
+}
+\definecolor{lightgray}{gray}{0.9}
+\usepackage[sorting=none]{biblatex} % Sorting default is alphabetical, none will sort references in order of appearance
+\usepackage{colortbl} % Load the colortbl package
+\usepackage{fancyref}
+\usepackage{minted}
+\usepackage{caption}
+\usepackage[super]{nth}
+\usepackage[htt]{hyphenat}
+\usepackage{pifont}
+\usepackage{booktabs}
+\graphicspath{ {figures/} } %?
+\usepackage{array}
+\usepackage{afterpage}
+\usepackage[per-mode=symbol]{siunitx}
+\sisetup{list-separator = {, }}
+\sisetup{detect-all}
+\DeclareSIUnit\beamsize{\sigma} % Should be mathmode
+\DeclareSIUnit\protons{p+}
+\DeclareSIUnit\bunches{bunches}
+\DeclareSIUnit\turns{turns}
+\DeclareSIUnit{\arbunits}{arb.\,u.}
+\newcommand{\wrt}{w.r.t.\xspace}
+\newcommand{\ie}{i.\,e.\ }
+\newcommand{\cf}{cf.\ }
+
+\usepackage{xspace}
+\usepackage{rotating}
+\newcolumntype{R}[1]{>{\raggedright\arraybackslash}S[#1]} 
+\usepackage{pdflscape}
+\newcommand{\ms}[2]{\shortstack{#1 \\\\ (#2)}}
+
+\newcommand{\eg}{e.\,g.\ }
+\newcommand{\etc}{etc.\ }
+
+\newcommand*{\figuretitle}[1]{
+    {\centering
+    \textbf{#1}
+    \par\medskip}
+}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+\addbibresource{references.bib}
